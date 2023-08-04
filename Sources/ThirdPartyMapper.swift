@@ -12,7 +12,7 @@ public typealias ClientWithURL = (client: ThirdPartyMapClient, url: URL)
 public final class ThirdPartyMapper {
     public static var allowedClients = ThirdPartyMapClient.allCases
 
-    public static func filterClients(searchQuery: String, isAddress: Bool) -> [ClientWithURL] {
+    public static func installedClients(searchQuery: String, isAddress: Bool) -> [ClientWithURL] {
         let clientsSupportingQuery: [ThirdPartyMapClient]
 
         if isAddress {

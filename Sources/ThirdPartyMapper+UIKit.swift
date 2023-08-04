@@ -9,7 +9,7 @@ import UIKit
 
 extension ThirdPartyMapper {
     public class func open(searchQuery: String, isAddress: Bool, on viewController: UIViewController) {
-        let clientsWithURL = filterClients(searchQuery: searchQuery, isAddress: isAddress)
+        let clientsWithURL = installedClients(searchQuery: searchQuery, isAddress: isAddress)
 
         if clientsWithURL.count == 1 {
             let client = clientsWithURL.first!
