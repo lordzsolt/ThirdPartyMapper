@@ -1,0 +1,7 @@
+platform :ios, '10.0'
+
+target 'ThirdPartyMapperExample' do
+  use_frameworks! :linkage => :static
+
+  pod 'ThirdPartyMapper', :path => "../"
+end

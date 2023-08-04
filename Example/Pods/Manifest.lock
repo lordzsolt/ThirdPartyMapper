@@ -1,0 +1,16 @@
+PODS:
+  - ThirdPartyMapper (1.0.0)
+
+DEPENDENCIES:
+  - ThirdPartyMapper (from `../`)
+
+EXTERNAL SOURCES:
+  ThirdPartyMapper:
+    :path: "../"
+
+SPEC CHECKSUMS:
+  ThirdPartyMapper: 095b9f23dfc0005076e2542bc1a741c1f0c36f3a
+
+PODFILE CHECKSUM: e355f9e9c1849dc9aa6e995699154c1f16abe497
+
+COCOAPODS: 1.12.1

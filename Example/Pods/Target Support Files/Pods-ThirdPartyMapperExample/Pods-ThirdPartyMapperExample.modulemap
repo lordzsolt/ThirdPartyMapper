@@ -1,0 +1,6 @@
+framework module Pods_ThirdPartyMapperExample {
+  umbrella header "Pods-ThirdPartyMapperExample-umbrella.h"
+
+  export *
+  module * { export * }
+}
