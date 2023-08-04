@@ -24,8 +24,11 @@ Unfortunately, not all map clients offer URL schemes to be supported by `ThirdPa
 
 ### Swift Package Manager
 
-In Xcode, click on the “File” menu, “Swift Packages”, “Add Package Dependency…”, then enter the URL for this repo: `https://github.com/lordzsolt/ThirdPartyMapper.git`.
+In Xcode, click on the “File” menu, “Swift Packages”, “Add Package Dependency…”, then enter the URL for this repo: 
 
+```
+https://github.com/lordzsolt/ThirdPartyMapper.git
+```
 
 ### CocoaPods
 
