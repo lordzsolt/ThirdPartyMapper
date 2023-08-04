@@ -43,9 +43,17 @@ Or, you can manually import the files from the Sources folder.
 
 ## How to use
 
+### IMPORTANT:
+
+Declare URL schemes in Info.plist
+
+### isAddress explanation
+
+TODO
+
 ### Getting the list of supported clients
 
-``` swift
+```swift
 let clients = ThirdPartyMapper.allowedClients
 ```
 
@@ -53,8 +61,71 @@ let clients = ThirdPartyMapper.allowedClients
 
 Sometimes depending on which geogrephical region you are making your app available, you could decide to show the list of clients in a different order, or show a specific list of your choice. This is why `ThirdPartyMapper.allowedClients` is publically settable.
 
-```
+```swift
 ThirdPartyMapper.allowedClients = [.waze, .googleMaps]
+```
+
+### Retrieving a list of installed clients
+
+```swift
+let installedClients = ThirdPartyMapper.installedClients(
+    searchQuery: "One Apple Park Way, Cupertino, CA 95014, United States",
+    isAddress: true)
+```
+
+### Show client picker action sheet in UIKit
+
+```swift
+ThirdPartyMapper.open(
+    searchQuery: "One Apple Park Way, Cupertino, CA 95014, United States",
+    isAddress: true,
+    on: viewController)
+```
+
+### Show client picker confirmation dialog in SwiftUI (iOS 15.0)
+
+```swift
+struct ContentView: View {
+    private static let appleCampusAddress = "One Apple Park Way, Cupertino, CA 95014, United States"
+    @State var isMapPickerShown = false
+
+    var body: some View {
+        VStack {
+            Button("Apple Campus") {
+                isMapPickerShown = true
+            }
+            .buttonStyle(.bordered)
+            .frame(height: 40)
+        }
+        .mapPicker(
+            searchQuery: Self.appleCampusAddress,
+            isAddress: true,
+            isPresented: $isConfirmationDialogShown)
+    }
+}
+```
+
+### Show client picker action sheet in SwiftUI (pre-iOS 15.0)
+
+```swift
+struct ContentView: View {
+    private static let appleCampusAddress = "One Apple Park Way, Cupertino, CA 95014, United States"
+    @State var isMapPickerShown = false
+
+    var body: some View {
+        VStack {
+            Button("Apple Campus") {
+                isMapPickerShown = true
+            }
+            .buttonStyle(.bordered)
+            .frame(height: 40)
+        }
+        .mapPickerActionSheet(
+            searchQuery: Self.appleCampusAddress,
+            isAddress: true,
+            isPresented: $isConfirmationDialogShown)
+    }
+}
 ```
 
 ## Requirements
