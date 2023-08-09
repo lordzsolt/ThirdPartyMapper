@@ -36,12 +36,12 @@ struct ContentView: View {
         }
         .mapPickerActionSheet(
             searchQuery: Self.appleCampusAddress,
-            isAddress: true,
+            isExactLocation: true,
             isPresented: $isActionSheetShown)
 
         .mapPicker(
             searchQuery: "Cupertino",
-            isAddress: false,
+            isExactLocation: false,
             isPresented: $isConfirmationDialogShown)
     }
 
@@ -52,9 +52,9 @@ struct ContentView: View {
             .last!
             .rootViewController!
 
-        ThirdPartyMapper.open(
+        ThirdPartyMapper.openClientPicker(
             searchQuery: Self.appleCampusAddress,
-            isAddress: true,
+            isExactLocation: true,
             on: rootViewController)
     }
 }

@@ -7,6 +7,9 @@ _Interact with third-party iOS map clients, using custom URL schemes or helper m
 ![Swift Package Manager](https://img.shields.io/badge/support-Swift_Package_Manager-orange.svg)
 [![MIT license](http://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/lordzsolt/ThirdPartyMapper/raw/master/LICENSE)
 
+## Example
+
+![Example GIF showing how the map picker alert looks like](./Assets/example.gif)
 
 ## Supported map clients
 
@@ -45,11 +48,26 @@ Or, you can manually import the files from the Sources folder.
 
 ### IMPORTANT:
 
-Declare URL schemes in Info.plist
+In order for ThirdPartyMapper to work, you need to declare URL Schemes of the Apps you would like to use in the `Info.plist` file of your project:
 
-### isAddress explanation
+```
+    <key>LSApplicationQueriesSchemes</key>
+    <array>
+        <string>comgooglemaps</string>
+        <string>waze</string>
+    </array>
+```
 
-TODO
+![Query schemes image](./Assets/query-schemes.png)
+
+
+### `isExactLocation` flag
+
+You will notice that most methods have a parameter `isExactLocation`. This is to specify if the `searchQuery` should be used to navigate the user to an exact location, such as an address.
+
+**In case you want to highlight a general area on a map, such as California, pass `false` to this argument. This feature is not supported by all apps.**
+
+![Non-exact location GIF](./Assets/not-exact-location.gif)
 
 ### Getting the list of supported clients
 
@@ -70,15 +88,15 @@ ThirdPartyMapper.allowedClients = [.waze, .googleMaps]
 ```swift
 let installedClients = ThirdPartyMapper.installedClients(
     searchQuery: "One Apple Park Way, Cupertino, CA 95014, United States",
-    isAddress: true)
+    isExactLocation: true)
 ```
 
 ### Show client picker action sheet in UIKit
 
 ```swift
-ThirdPartyMapper.open(
+ThirdPartyMapper.openClientPicker(
     searchQuery: "One Apple Park Way, Cupertino, CA 95014, United States",
-    isAddress: true,
+    isExactLocation: true,
     on: viewController)
 ```
 
@@ -99,7 +117,7 @@ struct ContentView: View {
         }
         .mapPicker(
             searchQuery: Self.appleCampusAddress,
-            isAddress: true,
+            isExactLocation: true,
             isPresented: $isConfirmationDialogShown)
     }
 }
@@ -122,7 +140,7 @@ struct ContentView: View {
         }
         .mapPickerActionSheet(
             searchQuery: Self.appleCampusAddress,
-            isAddress: true,
+            isExactLocation: true,
             isPresented: $isConfirmationDialogShown)
     }
 }

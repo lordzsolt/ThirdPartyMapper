@@ -12,6 +12,7 @@ public enum ThirdPartyMapClient: Hashable, CaseIterable {
     case googleMaps
     case waze
 
+    /// The name of the map app
     public var name: String {
         switch self {
         case .appleMaps:
@@ -23,9 +24,9 @@ public enum ThirdPartyMapClient: Hashable, CaseIterable {
         }
     }
 
-    // Supports only specific house addresses
-    // Vague queries highlighting an area, such as "Switzerland" are not supported
-    public var isAddressOnly: Bool {
+    /// `true` if this map app supports only exact locations, that the user can navigate to.
+    /// `false` if this map app supports vague queries, that are meant to highlight a location on the map.
+    public var isExactLocationOnly: Bool {
         switch self {
         case .appleMaps, .googleMaps:
             return false
@@ -34,6 +35,7 @@ public enum ThirdPartyMapClient: Hashable, CaseIterable {
         }
     }
 
+    /// The URL scheme of the map app, that needs to be added to the Info.plist file
     public var urlScheme: String {
         switch self {
         case .appleMaps:
@@ -45,6 +47,7 @@ public enum ThirdPartyMapClient: Hashable, CaseIterable {
         }
     }
 
+    /// The scheme of the map app, through which the `searchQuery` is passed
     public var queryScheme: String {
         switch self {
         case .appleMaps, .googleMaps, .waze:
@@ -52,6 +55,10 @@ public enum ThirdPartyMapClient: Hashable, CaseIterable {
         }
     }
 
+    /// Attempt to build a URL, that will open the `query` of the map app
+    ///
+    /// - Parameter query: The location to be opened in the map app
+    /// - Returns: The URL that needs to be passed to `UIApplication.shared.open(...)` to open the `query` in the map app
     public func buildURL(query: String) -> URL? {
         let encodedQuery: String
         switch self {
